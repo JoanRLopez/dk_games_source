@@ -20,7 +20,7 @@
 # SOFTWARE.
 #
 
-FROM        --platform=$TARGETOS/$TARGETARCH debian:bookworm-slim
+FROM        ubuntu:22.04
 
 LABEL       author="Matthew Penner" maintainer="matthew@pterodactyl.io"
 
@@ -52,6 +52,13 @@ RUN     if [ "$(uname -m)" = "x86_64" ]; then \
 USER        container
 ENV         USER=container HOME=/home/container
 WORKDIR     /home/container
+
+ENV SERVER_MANAGER_DIR=/home/container/server-manager
+ENV SERVER_INSTALL_DIR=${SERVER_MANAGER_DIR}/assetto
+
+RUN mkdir -p ${SERVER_MANAGER_DIR} ${SERVER_INSTALL_DIR} \
+    && chown -R container:container ${SERVER_MANAGER_DIR} \
+    && chown -R container:container ${SERVER_INSTALL_DIR}
 
 STOPSIGNAL SIGINT
 
