@@ -62,7 +62,7 @@ RUN         mkdir -p ${SERVER_MANAGER_DIR} ${SERVER_INSTALL_DIR} ${ASSETTO_SERVE
             && chown -R container:container ${ASSETTO_SERVER_DIR}
 
 # Descarga e instalación del servidor de Assetto Corsa
-RUN         ${STEAMROOT}/steamcmd.sh +login "anonymous" "anonymous" \
+RUN         ${STEAMROOT}/steamcmd.sh +login anonymous anonymous \
             +force_install_dir ${ASSETTO_SERVER_DIR} \
             +app_update 302550 validate \
             +quit
